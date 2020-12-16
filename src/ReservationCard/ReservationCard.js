@@ -2,7 +2,6 @@ import React from 'react'
 import './ReservationCard.css'
 
 const ReservationCard = (props) => {
-  console.log(props.data);
   const { name, date, time, number } = props.data
   return (
     <article className="resv-card">

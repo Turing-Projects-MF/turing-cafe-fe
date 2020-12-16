@@ -20,7 +20,7 @@ class App extends Component {
 
   createReservationCards = () => {
     return this.state.reservations.map(reservation => {
-      return <ReservationCard data={ reservation } />
+      return <ReservationCard key={ Date.now() } data={ reservation } />
     })
   }
 
