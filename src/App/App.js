@@ -20,7 +20,11 @@ class App extends Component {
 
   createReservationCards = () => {
     return this.state.reservations.map(reservation => {
-      return <ReservationCard key={ reservation.id } data={ reservation } />
+      return <ReservationCard
+        key={ reservation.id }
+        data={ reservation }
+        delete={ this.cancelReservation }
+      />
     })
   }
 
@@ -36,10 +40,24 @@ class App extends Component {
       .then(response => response.json())
   }
 
+  cancelReservation = (reservationId) => {
+    fetch(`http://localhost:3001/api/v1/reservations/${ reservationId }`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+    const updatedReservations = this.state.reservations.filter(reservation => {
+      return reservation.id !== reservationId
+    })
+    this.setState({ reservations: updatedReservations })
+  }
+
   render() {
 
     return (
-      <div className="App">
+      <div className="App" >
         <h1 className='app-title'>Turing Cafe Reservations</h1>
         <div className='resy-form'>
           <Form addReservation={ this.addReservation } />
