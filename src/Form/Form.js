@@ -11,6 +11,12 @@ class Form extends Component {
       number: ''
     }
   }
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value })
+  }
+
+
   render() {
     return (
       <form>
