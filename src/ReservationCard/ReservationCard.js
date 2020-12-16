@@ -7,9 +7,9 @@ const ReservationCard = (props) => {
   return (
     <article className="resv-card">
       <h1>{ name }</h1>
-      <p>{ date }</p>
-      <p>{ time }</p>
-      <p>{ number }</p>
+      <p>Reserved On { date }</p>
+      <p> at { time } pm</p>
+      <p>{ number } guest(s)</p>
     </article>
   )
 }
