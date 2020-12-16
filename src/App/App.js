@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import ReservationCard from '../ReservationCard/ReservationCard'
 import Form from '../Form/Form'
+import { callApi, postApi, deleteApi } from '../apiCalls'
 
 class App extends Component {
   constructor() {
@@ -12,8 +13,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3001/api/v1/reservations')
-      .then(response => response.json())
+    callApi()
       .then(data => this.setState({ reservations: data }))
       .catch(error => console.log(error))
   }
@@ -30,24 +30,11 @@ class App extends Component {
 
   addReservation = (newReservation) => {
     this.setState({ reservations: [...this.state.reservations, newReservation] })
-    fetch('http://localhost:3001/api/v1/reservations', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newReservation)
-    })
-      .then(response => response.json())
+    postApi(newReservation)
   }
 
   cancelReservation = (reservationId) => {
-    fetch(`http://localhost:3001/api/v1/reservations/${ reservationId }`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => response.json())
+    deleteApi(reservationId)
     const updatedReservations = this.state.reservations.filter(reservation => {
       return reservation.id !== reservationId
     })
