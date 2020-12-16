@@ -19,9 +19,9 @@ class App extends Component {
   }
 
   createReservationCards = () => {
-    return this.state.reservations.map(reservation => {
+    return this.state.reservations.map((reservation, index) => {
       return <ReservationCard
-        key={ reservation.id }
+        key={ index }
         data={ reservation }
         delete={ this.cancelReservation }
       />
