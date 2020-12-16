@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import ReservationCard from '../ReservationCard/ReservationCard'
 
 class App extends Component {
   constructor() {
@@ -16,8 +17,14 @@ class App extends Component {
       .catch(error => console.log(error))
   }
 
+  createReservationCards = () => {
+    return this.state.reservations.map(reservation => {
+      return <ReservationCard data={ reservation } />
+    })
+  }
 
   render() {
+
     return (
       <div className="App">
         <h1 className='app-title'>Turing Cafe Reservations</h1>
@@ -25,7 +32,7 @@ class App extends Component {
 
         </div>
         <div className='resy-container'>
-
+          { this.createReservationCards() }
         </div>
       </div>
     )
