@@ -5,10 +5,14 @@ import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 
 describe('App', () => {
+  it('should render successfully', () => {
+    render(<App />)
+
+    expect(screen.getByText('Turing Cafe Reservations')).toBeInTheDocument();
+  })
+
   it('Should add a new reservation', () => {
-    render(
-      <App />
-    )
+    render(<App />)
 
     const nameField = screen.getByPlaceholderText('Name')
     const dateField = screen.getByPlaceholderText('Date (mm/dd)')
