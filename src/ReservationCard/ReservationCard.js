@@ -10,6 +10,7 @@ const ReservationCard = (props) => {
       <p>Reserved On { date }</p>
       <p> at { time } pm</p>
       <p>{ number } guest(s)</p>
+      <button>Cancel</button>
     </article>
   )
 }
