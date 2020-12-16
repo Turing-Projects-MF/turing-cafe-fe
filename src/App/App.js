@@ -20,12 +20,20 @@ class App extends Component {
 
   createReservationCards = () => {
     return this.state.reservations.map(reservation => {
-      return <ReservationCard key={ Date.now() } data={ reservation } />
+      return <ReservationCard key={ reservation.id } data={ reservation } />
     })
   }
 
   addReservation = (newReservation) => {
     this.setState({ reservations: [...this.state.reservations, newReservation] })
+    fetch('http://localhost:3001/api/v1/reservations', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newReservation)
+    })
+      .then(response => response.json())
   }
 
   render() {
