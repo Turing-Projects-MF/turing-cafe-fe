@@ -16,10 +16,14 @@ class Form extends Component {
     this.setState({ [name]: value })
   }
 
+  handleSubmit = (event, props) => {
+    event.preventDefault();
+    this.props.addReservation(this.state)
+  }
 
   render() {
     return (
-      <form>
+      <form onSubmit={ this.handleSubmit }>
         <input
           type="text"
           placeholder="Name"
